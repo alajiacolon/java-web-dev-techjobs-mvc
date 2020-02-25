@@ -21,6 +21,8 @@ public class ListController {
     static HashMap<String, String> columnChoices = new HashMap<>();
     static HashMap<String, Object> tableChoices = new HashMap<>();
 
+    //populates columnChoices and tableChoices with values and
+    // provides a centralized collection of the different List and Search options presented throughout the user interface.
     public ListController () {
         columnChoices.put("all", "All");
         columnChoices.put("employer", "Employer");
@@ -32,8 +34,10 @@ public class ListController {
         tableChoices.put("location", JobData.getAllLocations());
         tableChoices.put("positionType", JobData.getAllPositionTypes());
         tableChoices.put("coreCompetency", JobData.getAllCoreCompetency());
+
     }
 
+    // renders a view that displays a table of clickable links for the different job categories.
     @RequestMapping(value = "")
     public String list(Model model) {
         model.addAttribute("columns", columnChoices);
@@ -42,10 +46,12 @@ public class ListController {
         model.addAttribute("locations", JobData.getAllLocations());
         model.addAttribute("positions", JobData.getAllPositionTypes());
         model.addAttribute("skills", JobData.getAllCoreCompetency());
+        model.addAttribute("all", "View All");
 
         return "list";
     }
 
+    //renders a different view that displays information for the jobs that relate to a selected category.
     @RequestMapping(value = "jobs")
     public String listJobsByColumnAndValue(Model model, @RequestParam String column, @RequestParam String value) {
         ArrayList<Job> jobs;

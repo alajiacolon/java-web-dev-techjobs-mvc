@@ -14,6 +14,7 @@ import java.util.List;
 /**
  * Created by LaunchCode
  */
+// reads data from the job_data.csv file and stores it in a format we can use. In this case, that format is an ArrayList of Job objects
 public class JobData {
 
     private static final String DATA_FILE = "job_data.csv";
